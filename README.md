@@ -56,3 +56,7 @@ This project is licensed under the [MIT License](LICENSE).
 
 Feel free to save this content in a README.md file in your project directory and make any necessary modifications according to your project's specific details and requirements.
 
+
+### Author 
+
+Olayeye Muideen [frontendgeek](https://github.com/muideen7)
