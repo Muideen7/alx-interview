@@ -46,6 +46,7 @@ console.log(triangle);
   [1, 4, 6, 4, 1]
 ]
 
+```
 ## Contributing
 
 Contributions to the "alx-interview" project are welcome. If you find any issues or want to enhance the existing code, feel free to open a pull request or submit an issue on the [GitHub repository](https://github.com/your-username/alx-interview).
