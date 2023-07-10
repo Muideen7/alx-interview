@@ -1,8 +1,3 @@
-
-I apologize for the misunderstanding. Here's the updated content of the README.md file, including all the information you requested:
-
-markdown
-Copy code
 # 0x01-lockboxes
 
 This directory contains code and examples related to lockboxes. The purpose of this directory is to provide a collection of resources and code snippets for working with lockboxes in Python.
