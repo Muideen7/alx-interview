@@ -4,33 +4,31 @@ You have n number of locked boxes in front of you.
 Each box is numbered sequentially from 0 to n - 1
  and each box may contain keys to the other boxes.
 """
-
 def canUnlockAll(boxes):
-    visited = set()
+    # Set to keep track of opened boxes
+    opened_boxes = set([0])
 
-    def exploreBox(box_num):
-        if box_num in visited:
-            return
+    # List to store the keys obtained
+    keys = boxes[0]
 
-        visited.add(box_num)
+    # Iterate over the keys until no new keys are found
+    while keys:
+        new_keys = []
 
-        keys = boxes[box_num]
+        # Check each key obtained
         for key in keys:
-            if key < len(boxes):
-                exploreBox(key)
+            # If the key corresponds to a box that hasn't been opened yet
+            if key < len(boxes) and key not in opened_boxes:
+                # Mark the box as opened and add its keys to the list of new keys
+                opened_boxes.add(key)
+                new_keys.extend(boxes[key])
 
-    exploreBox(0)
+        # Update the keys list with the new keys
+        keys = new_keys
 
-    return len(visited) == len(boxes)
+    # If all boxes have been opened, return True
+    if len(opened_boxes) == len(boxes):
+        return True
 
-
-# Example usage
-boxes = [
-    [1],     # Box 0 has a key to Box 1
-    [2],     # Box 1 has a key to Box 2
-    [3, 4],  # Box 2 has keys to Box 3 and Box 4
-    [],      # Box 3 has no keys
-    [2],     # Box 4 has a key to Box 2
-]
-
-print(canUnlockAll(boxes))  # Output: True
+    # If there are still unopened boxes, return False
+    return False
