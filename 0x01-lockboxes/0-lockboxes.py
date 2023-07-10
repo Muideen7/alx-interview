@@ -5,18 +5,15 @@ Each box is numbered sequentially from 0 to n - 1
  and each box may contain keys to the other boxes.
 """
 
+
 def canUnlockAll(boxes):
     """
-    Check if all the boxes can be unlocked.
-
-    Args:
-        boxes (list): A list of lists representing the locked boxes.
-
-    Returns:
-        bool: True if all the boxes can be unlocked, False otherwise.
+    boxes is a list of lists
+    :param boxes:
+    :return: boolean
     """
     totalBoxes = len(boxes)
-    checkBox = [False] * total_boxes
+    checkBox = [False] * totalBoxes
     checkBox[0] = True
     stack = [0]
 
@@ -25,8 +22,7 @@ def canUnlockAll(boxes):
         keys = boxes[currentBox]
 
         for key in keys:
-            if key < total_boxes and not check_box[key]:
+            if key < totalBoxes and not checkBox[key]:
                 checkBox[key] = True
                 stack.append(key)
-
     return all(checkBox)
