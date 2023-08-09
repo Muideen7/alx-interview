@@ -1,4 +1,4 @@
-i# N-Queens Problem
+# N-Queens Problem
 
 The N-Queens problem is a classic puzzle that involves placing N chess queens on an N×N chessboard in such a way that no two queens threaten each other. In other words, no two queens should share the same row, column, or diagonal.
 
