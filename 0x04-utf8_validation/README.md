@@ -63,8 +63,8 @@ print(result)  # Output: True
 ```
 ## Resources
 
-** UTF-8 on Wikipedia
-** UTF-8 Encoding
+* UTF-8 on Wikipedia
+* UTF-8 Encoding
 
 Remember that this README.md file provides a general overview of the UTF-8 Validation problem and its solution approach. You can adapt and expand it based on your specific implementation and requirements.
 
