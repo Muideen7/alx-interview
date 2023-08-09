@@ -1,4 +1,4 @@
-i# UTF-8 Validation
+# UTF-8 Validation
 
 ## Problem Description
 
