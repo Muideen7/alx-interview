@@ -17,31 +17,21 @@ Before you begin, ensure you have the following installed:
 
 ## Installation
 
-1. Clone this repository to your local machine:
+```sh
+# Clone the repository to your local machine
+git clone https://github.com/your-username/0x06-starwars_api.git
 
-   ```sh
-   git clone https://github.com/your-username/0x06-starwars_api.git
-```
-
-* Navigate to the project directory:
-
+# Navigate to the project directory
 cd 0x06-starwars_api
 
-* Install the required dependencies:
-
+# Install the required dependencies
 npm install
 
-## Usage
-
+# Usage
 To fetch and display information about Star Wars movies and characters, follow these steps:
 
-* Open a terminal and navigate to the project directory.
+# Open a terminal and navigate to the project directory
+cd 0x06-starwars_api
 
-* Run the script with the desired movie ID:
-
+# Run the script with the desired movie ID (replace '3' with the actual movie ID)
 node script.js 3
-
-Replace 3 with the movie ID of the Star Wars movie you want to retrieve information for.
-
-The script will fetch data from the Star Wars API and display movie details along with character names from the specified movie.
-
