@@ -21,8 +21,8 @@ Before you begin, ensure you have the following installed:
 
    ```sh
    git clone https://github.com/your-username/0x06-starwars_api.git
-
 ```
+
 * Navigate to the project directory:
 
 cd 0x06-starwars_api
