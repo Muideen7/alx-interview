@@ -1,44 +1,46 @@
-#!/usr/bin/env python3
-
+#!/usr/bin/python3
+"""
+Write a script that reads stdin line by line and computes metrics
+"""
 import sys
 
-def compute_metrics():
-    total_size = 0
-    status_codes = {}
 
-    try:
-        line_count = 0
-        for line in sys.stdin:
-            line_count += 1
+def printStatus(dic, size):
+    """ Prints information """
+    print("File size: {:d}".format(size))
+    for i in sorted(dic.keys()):
+        if dic[i] != 0:
+            print("{}: {:d}".format(i, dic[i]))
 
-            # Parse the line using regex
-            match = re.match(r'^(\S+) - \[.*\] "GET /projects/260 HTTP/1.1" (\d+) (\d+)$', line.strip())
-            if not match:
-                continue
 
-            ip_address, status_code, file_size = match.groups()
+# sourcery skip: use-contextlib-suppress
+statusCodes = {"200": 0, "301": 0, "400": 0, "401": 0, "403": 0,
+               "404": 0, "405": 0, "500": 0}
 
-            # Update total file size
-            total_size += int(file_size)
+count = 0
+size = 0
 
-            # Update status code count
-            if status_code in status_codes:
-                status_codes[status_code] += 1
-            else:
-                status_codes[status_code] = 1
+try:
+    for line in sys.stdin:
+        if count != 0 and count % 10 == 0:
+            printStatus(statusCodes, size)
 
-            # Print metrics after every 10 lines
-            if line_count % 10 == 0:
-                print_metrics(total_size, status_codes)
+        stlist = line.split()
+        count += 1
 
-    except KeyboardInterrupt:
-        # Print final metrics if keyboard interruption occurs
-        print_metrics(total_size, status_codes)
+        try:
+            size += int(stlist[-1])
+        except Exception:
+            pass
 
-def print_metrics(total_size, status_codes):
-    print(f"Total file size: File size: {total_size}")
-    for status_code in sorted(status_codes.keys()):
-        print(f"{status_code}: {status_codes[status_code]}")
+        try:
+            if stlist[-2] in statusCodes:
+                statusCodes[stlist[-2]] += 1
+        except Exception:
+            pass
+    printStatus(statusCodes, size)
 
-if __name__ == "__main__":
-    compute_metrics()
+
+except KeyboardInterrupt:
+    printStatus(statusCodes, size)
+    raise
