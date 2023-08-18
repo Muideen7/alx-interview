@@ -1,68 +1,44 @@
 #!/usr/bin/python3
-"""nqueen program solved with backtracking"""
+""" N queens """
 import sys
 
 
-def is_safe(board, row, col, N):
-    '''Check if there is a queen in the same column'''
-    for i in range(row):
-        if board[i][col] == 1:
-            return False
-
-    # Check if there is a queen in the upper-left diagonal
-    for i, j in zip(range(row, -1, -1), range(col, -1, -1)):
-        if board[i][j] == 1:
-            return False
-
-    # Check if there is a queen in the upper-right diagonal
-    for i, j in zip(range(row, -1, -1), range(col, N)):
-        if board[i][j] == 1:
-            return False
-
-    return True
-
-
-def nqueens_helper(board, row, N, solutions):
-    '''a function that creates a NxN board'''
-    if row == N:
-        solution = [[r, c] for r in range(N)
-                    for c in range(N) if board[r][c] == 1]
-        solutions.append(solution)
-        return
-
-    for col in range(N):
-        if is_safe(board, row, col, N):
-            board[row][col] = 1
-            nqueens_helper(board, row + 1, N, solutions)
-            board[row][col] = 0
-
-
-def nqueens(N):
-    '''a function that calls the queen finction'''
-    if not isinstance(N, int):
-        print("N must be a number")
-        sys.exit(1)
-
-    if N < 4:
-        print("N must be at least 4")
-        sys.exit(1)
-
-    board = [[0 for _ in range(N)] for _ in range(N)]
-    solutions = []
-    nqueens_helper(board, 0, N, solutions)
-
-    for solution in solutions:
-        print(solution)
-
-
-if len(sys.argv) != 2:
+if len(sys.argv) > 2 or len(sys.argv) < 2:
     print("Usage: nqueens N")
-    sys.exit(1)
+    exit(1)
 
-try:
-    N = int(sys.argv[1])
-    nqueens(N)
-except ValueError:
+if not sys.argv[1].isdigit():
     print("N must be a number")
-    sys.exit(1)
-    
+    exit(1)
+
+if int(sys.argv[1]) < 4:
+    print("N must be at least 4")
+    exit(1)
+
+n = int(sys.argv[1])
+
+
+def queens(n, i=0, a=[], b=[], c=[]):
+    """ find possible positions """
+    if i < n:
+        for j in range(n):
+            if j not in a and i + j not in b and i - j not in c:
+                yield from queens(n, i + 1, a + [j], b + [i + j], c + [i - j])
+    else:
+        yield a
+
+
+def solve(n):
+    """ solve """
+    k = []
+    i = 0
+    for solution in queens(n, 0):
+        for s in solution:
+            k.append([i, s])
+            i += 1
+        print(k)
+        k = []
+        i = 0
+
+
+solve(n)
